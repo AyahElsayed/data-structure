@@ -11,6 +11,7 @@ node *head = NULL;
 
 void inserNode(int value);
 void display();
+void deleteNode(int value);
 
 int main()
 {
@@ -19,6 +20,8 @@ int main()
     inserNode(10);
     inserNode(15);
     inserNode(7);
+    display();
+    deleteNode(15);
     display();
 
     return 0;
@@ -64,4 +67,30 @@ void display()
             current_node = current_node->next;
         }
     }
+    cout << endl;
+};
+
+void deleteNode(int value)
+{
+    node *current, *previous;
+
+    current = head;
+    previous = head; // initialization
+
+    // in general and
+    // in case the node i want to delete is first node
+    if (current->data == value)
+    {
+        head = current->next;
+        free(current); // delete from memory
+        return;        // to stop
+    }
+
+    while (current->data != value)
+    {
+        previous = current;
+        current = current->next;
+    }
+    previous->next = current->next;
+    free(current);
 };
