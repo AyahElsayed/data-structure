@@ -12,16 +12,15 @@ node *head = NULL;
 void inserNode(int value);
 void display();
 void deleteNode(int value);
+void insert_beg(int value);
 
 int main()
 {
     // display();
     inserNode(5);
     inserNode(10);
-    inserNode(15);
-    inserNode(7);
     display();
-    deleteNode(15);
+    insert_beg(20);
     display();
 
     return 0;
@@ -93,4 +92,12 @@ void deleteNode(int value)
     }
     previous->next = current->next;
     free(current);
+};
+
+void insert_beg(int value)
+{
+    node *new_node = new node;
+    new_node->data = value;
+    new_node->next = head;
+    head = new_node;
 };
