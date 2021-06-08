@@ -13,6 +13,7 @@ void inserNode(int value);
 void display();
 void deleteNode(int value);
 void insert_beg(int value);
+void delete_beg();
 
 int main()
 {
@@ -20,7 +21,7 @@ int main()
     inserNode(5);
     inserNode(10);
     display();
-    insert_beg(20);
+    delete_beg();
     display();
 
     return 0;
@@ -100,4 +101,18 @@ void insert_beg(int value)
     new_node->data = value;
     new_node->next = head;
     head = new_node;
+};
+
+void delete_beg()
+{
+    if (head == NULL)
+    {
+        cout << "Linked lidt is empty \n";
+    }
+    else
+    {
+        node *first_node = head;
+        head = first_node->next;
+        delete (first_node);
+    }
 };
