@@ -52,7 +52,25 @@ public:
         }
     };
 
-    
+    int getMax()
+    {
+        node *temp = root;
+        while (temp->right != nullptr)
+        {
+            temp = temp->right;
+        }
+        return temp->data;
+    };
+
+    int getMin()
+    {
+        node *temp = root;
+        while (temp->left != nullptr)
+        {
+            temp = temp->left;
+        }
+        return temp->data;
+    }
 };
 
 int main()
@@ -66,6 +84,8 @@ int main()
     obj.add(10);
     obj.add(15);
 
-   
+    cout << "max " << obj.getMax() << endl;
+    cout << "min " << obj.getMin() << endl;
+
     return 0;
 }
