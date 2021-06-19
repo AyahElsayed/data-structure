@@ -159,3 +159,9 @@ int main()
 
     return 0;
 }
+
+/*
+preorder => root , left , right
+inorder => left , root , right
+postorder => left , right , root
+*/
