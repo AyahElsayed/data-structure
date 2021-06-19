@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 using namespace std;
 
 class BST
@@ -91,24 +92,43 @@ public:
         else{
             return getHeightHelper(root);
         }
+    };
+
+    void display_levelOrder(){
+        if (root == nullptr) return;
+        queue<node*> q;
+        q.push(root);
+
+        while (!q.empty())
+        {
+            node *current = q.front();
+            q.pop();
+            cout << current->data << " ";
+
+            if(current->left != nullptr) q.push(current->left);
+            if(current->right != nullptr) q.push(current->right);
+        }
+        cout<<endl;
     }
 };
 
 int main()
 {
     BST obj;
-    obj.add(8);
-    obj.add(5);
-    obj.add(13);
-    obj.add(3);
-    obj.add(7);
-    obj.add(10);
     obj.add(15);
+    obj.add(6);
+    obj.add(20);
+    obj.add(3);
+    obj.add(9);
+    obj.add(8);
+    obj.add(25);
 
-    cout << "max " << obj.getMax() << endl;
-    cout << "min " << obj.getMin() << endl;
+    // cout << "max " << obj.getMax() << endl;
+    // cout << "min " << obj.getMin() << endl;
 
-    cout<< "Height: " << obj.getHeight() << endl;
+    // cout<< "Height: " << obj.getHeight() << endl;
+
+    obj.display_levelOrder();
 
     return 0;
 }
