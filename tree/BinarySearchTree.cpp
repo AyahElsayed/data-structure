@@ -12,6 +12,18 @@ private:
     };
     node *root = nullptr;
 
+    // recursive code
+    int getHeightHelper(node *temp){
+        if(temp == nullptr){
+            return -1;
+        }
+        else{
+            int leftSubTree = getHeightHelper(temp->left);
+            int rightSubTree = getHeightHelper(temp->right);
+            return 1 + max(leftSubTree , rightSubTree);
+        }
+    }
+
 public:
     void add(int value)
     {
@@ -70,6 +82,15 @@ public:
             temp = temp->left;
         }
         return temp->data;
+    };
+
+    int getHeight(){
+        if(root == nullptr){
+            return -1;
+        }
+        else{
+            return getHeightHelper(root);
+        }
     }
 };
 
@@ -86,6 +107,8 @@ int main()
 
     cout << "max " << obj.getMax() << endl;
     cout << "min " << obj.getMin() << endl;
+
+    cout<< "Height: " << obj.getHeight() << endl;
 
     return 0;
 }
