@@ -14,16 +14,29 @@ private:
     node *root = nullptr;
 
     // recursive code
-    int getHeightHelper(node *temp){
-        if(temp == nullptr){
+    int getHeightHelper(node *temp)
+    {
+        if (temp == nullptr)
+        {
             return -1;
         }
-        else{
+        else
+        {
             int leftSubTree = getHeightHelper(temp->left);
             int rightSubTree = getHeightHelper(temp->right);
-            return 1 + max(leftSubTree , rightSubTree);
+            return 1 + max(leftSubTree, rightSubTree);
         }
-    }
+    };
+
+    void preOrder(node *temp)
+    {
+        if (temp == nullptr)
+            return;
+
+        cout << temp->data << " ";
+        preOrder(temp->left);
+        preOrder(temp->right);
+    };
 
 public:
     void add(int value)
@@ -85,18 +98,23 @@ public:
         return temp->data;
     };
 
-    int getHeight(){
-        if(root == nullptr){
+    int getHeight()
+    {
+        if (root == nullptr)
+        {
             return -1;
         }
-        else{
+        else
+        {
             return getHeightHelper(root);
         }
     };
 
-    void display_levelOrder(){
-        if (root == nullptr) return;
-        queue<node*> q;
+    void display_levelOrder()
+    {
+        if (root == nullptr)
+            return;
+        queue<node *> q;
         q.push(root);
 
         while (!q.empty())
@@ -105,10 +123,18 @@ public:
             q.pop();
             cout << current->data << " ";
 
-            if(current->left != nullptr) q.push(current->left);
-            if(current->right != nullptr) q.push(current->right);
+            if (current->left != nullptr)
+                q.push(current->left);
+            if (current->right != nullptr)
+                q.push(current->right);
         }
-        cout<<endl;
+        cout << endl;
+    };
+
+    void display_preOrder()
+    {
+        if (root != nullptr)
+            preOrder(root);
     }
 };
 
@@ -128,7 +154,8 @@ int main()
 
     // cout<< "Height: " << obj.getHeight() << endl;
 
-    obj.display_levelOrder();
+    // cout << "level order" << obj.display_levelOrder() << endl;
+    obj.display_preOrder();
 
     return 0;
 }
