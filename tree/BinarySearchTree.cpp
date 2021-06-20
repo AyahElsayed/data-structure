@@ -38,6 +38,34 @@ private:
         preOrder(temp->right);
     };
 
+    node *removeHelper(node *root , int data){
+        if(root == nullptr) return root;
+        else if (data < root->data){
+            root->left = removeHelper(root->left , data);
+        }
+        else if (data > root->data){
+            root->right = removeHelper(root->right , data);
+        }
+        else{
+            if(root->left == nullptr){
+                node * temp = root->right;
+                delete root;
+                return temp;
+            }
+            else if(root->right == nullptr){
+                node * temp = root->left;
+                delete root;
+                return temp;
+            }
+            else{
+                int maxValue = this->getMax();
+                root ->data = maxValue;
+                root->left = removeHelper(root->left , maxValue);
+            }
+        }
+        return root;
+    }
+
 public:
     void add(int value)
     {
@@ -135,6 +163,10 @@ public:
     {
         if (root != nullptr)
             preOrder(root);
+    };
+
+    void remove(int data){
+        root = removeHelper(root , data);
     }
 };
 
@@ -155,6 +187,8 @@ int main()
     // cout<< "Height: " << obj.getHeight() << endl;
 
     // cout << "level order" << obj.display_levelOrder() << endl;
+    obj.display_preOrder();
+    obj.remove(3);
     obj.display_preOrder();
 
     return 0;
